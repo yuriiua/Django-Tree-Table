@@ -1,0 +1,61 @@
+
+{% extends 'Home.html' %}
+
+{% block content %}
+        <div class="container">
+            <span>
+            <form name="searcher" class="form-inline" id="searchForm">
+            {% csrf_token %}
+            <div class="form-group">
+
+                <input type="text" class="form-control" id="searchInput" name="inputTerm" placeholder="Search area">
+            </div>
+            <div class="form-group">
+                <select class="form-control search_selector" name="searchBy">
+                        <option value="position">Position</option>
+                        <option value="fullName">Full Name</option>
+                        <option value="salary_less">Salary less</option>
+                        <option value="salary_more">Salary more</option>
+                        <option value="bossName" >Boss Name</option>
+                        <option value="employed_before" >Date before</option>
+                        <option value="employed_after" >Date after</option>
+
+                    </select>
+            </div>
+
+            <div class="form-group">
+                <button type="button" onclick="searchByForm()" class="btn btn-primary">Submit</button>
+            </div>
+
+        </form>
+            </span>
+
+
+    <div align="center" class="container center_div">
+          <a href="#" onclick="treeTable('expandAll')">Expand all</a>
+          <a href="#" onclick="treeTable('collapseAll')">Collapse all</a>
+
+
+        </div>
+<div class="table-responsive">
+<table id="employeeTable" class="treetable table" >
+<thead class="thead-bright">
+          <tr>
+              <th><span></span></th>
+              <th class=""><a href="#" onclick="toggleClass('triangle-icon_1')"><span>Position</span><span id="by_position" class="sorter triangle-icon_1"></span></a></th>
+              <th class=""><a href="#" onclick="toggleClass('triangle-icon_2')"><span>Full Name</span><span id="by_fullName" class="sorter triangle-icon_2"></span></a></th>
+              <th class=""><a href="#" onclick="toggleClass('triangle-icon_3')"><span>Boss Name</span><span id="by_bossName" class="sorter triangle-icon_3"></span></a></th>
+              <th class=""><a href="#" onclick="toggleClass('triangle-icon_4')"><span>Salary</span><span id="by_salary" class="sorter triangle-icon_4"></span></a></th>
+              <th><a href="#" onclick="toggleClass('triangle-icon_5')"><span>Employee date</span><span id="by_employeeDate" class="sorter triangle-icon_5"></span></a></th>
+              <th><span>Detail</span></th>
+
+          </tr>
+        </thead>
+<tbody id="0">
+</tbody>
+</table>
+</div>
+    </div>
+    <div id="loaderBox"><div class="loader"></div></div>
+
+{% endblock %}

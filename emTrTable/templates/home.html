@@ -1,0 +1,24 @@
+
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+    <link href="{% static '/bootstrap/dist/css/bootstrap.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static '/css/default.css' %}" rel="stylesheet" type="text/css" />
+    <script src="{% static '/js/default.js' %}"></script>
+    <script src="{% static "/bootstrap/dist/js/bootstrap.js" %}"></script>
+
+    <meta charset="UTF-8">
+    <title>Tree Table</title>
+</head>
+<body>
+<div class="testTask" style="text-align: center;padding: 20px;">
+    <span id="homelink"><a href="/">Home</a> </span><span><a href="auth/logout" >logout</a></span>
+</div>
+
+{% block content %}
+
+{% endblock %}
+
+</body>
+</html>

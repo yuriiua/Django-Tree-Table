@@ -1,0 +1,95 @@
+
+{% extends 'Home.html' %}
+
+{% block content %}
+    {% load staticfiles %}
+
+<div id="detailBlock" class="container">
+<form name="editDetails" id="saveForm" method="post" enctype="multipart/form-data">
+
+    <div class="leftBlock formBlock" >
+        {% if form.photo.value %}
+        <div id="imgBlock" align="left"><img width="{{ form.photo.width }}" height="{{ form.photo.height }}" src="{{ form.photo.value.url }}"/></div>
+
+        {%  endif %}
+  {{ form.photo }}
+
+    </div>
+
+    <div class="rightBlock formBlock" >
+
+    <div class="form-group"><label>Position</label>{{ form.position }}</div>
+    {% for error in form.position.errors %}
+    <div class="form-group"> style="color: red">{{ error }}</div>
+    {% endfor %}
+        <div class="form-group"><label>Full name</label>{{ form.fullName }}</div>
+    {% for error in form.fullName.errors %}
+    <div class="form-group">{{ error }}</div>
+    {% endfor %}
+    <div class="form-group"><label>Employed start</label>{{ form.employeeDate }}</div>
+    
+    <div class="form-group"><label>Salary</label>{{ form.salary }}</div>
+    <p style="display: none" id="bossID">{{ form.bossID }}</p>
+    {% if bossList != 'False' %}
+        <div class="form-group">
+        <label>Boss</label>
+    <select onchange="changeLevel(this.value);return false;">
+    {% for boss in bossList %}
+        {% if form.bossID.value == boss.id %}
+
+        <option selected value="{{ boss.id }}" onclick="" id="{{ boss.id }}">{{ boss.fullName }}</option>
+        {% else %}
+             <option value="{{ boss.id }}" onclick="" id="{{ boss.id }}">{{ boss.fullName }}</option>
+        {% endif %}
+        {% endfor %}
+    </select>
+        </div>
+    {% endif %}
+    <p style="display: none;" id="inputlevel">{{ form.level }}</p>
+    {% csrf_token %}
+
+
+
+
+        <p><button type="submit">Save changes</button></p>
+    </div>
+</form>
+
+{% for boss in bossList %}
+<input hidden value="{{ boss.level }}" id="id{{ boss.id }}">
+{% endfor %}
+
+<script>
+   $("#ii").submit(function(e) {
+    e.preventDefault();
+    console.log(this);
+    var formData = new FormData(this);
+
+    console.log(formData['csrfmiddlewaretoken']);
+
+    $.ajax({
+        url: window.location.pathname,
+        type: 'POST',
+        beforeSend: function (xhr) {
+        xhr.setRequestHeader("X-CSRFToken", formData['csrfmiddlewaretoken']);
+        },
+        data: formData,
+        success: function (data) {
+            alert(data)
+        },
+        cache: false,
+        contentType: false,
+        processData: false
+    });
+});
+   function changeLevel(bossId) {
+       var level = parseInt($('#id'+bossId).val())+1;
+
+       $("#id_level").remove();
+       $("#inputlevel").append('<input type="number" name="level" value="'+level+'" required="" id="id_level">');
+       $("#id_bossID").remove();
+       $("#bossID").append('<input type="number" name="bossID" value="'+bossId+'" required="" id="id_bossID">')
+   }
+</script>
+</div>
+{% endblock %}
