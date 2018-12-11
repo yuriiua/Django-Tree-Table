@@ -182,7 +182,7 @@
 
         }else if (type == 'alpha') {
             if(direct == 'up'){
-               console.log('up ', key);
+
                 data.sort(function(a, b) {
                     var nameA = a[key].toUpperCase(); // ignore upper and lowercase
                     var nameB = b[key].toUpperCase(); // ignore upper and lowercase
@@ -190,7 +190,7 @@
                     if (nameA > nameB) {return 1}
                 });
             }else{
-                console.log('down ', key);
+
                 data.sort(function(a, b) {
                     var nameA = a[key].toUpperCase(); // ignore upper and lowercase
                     var nameB = b[key].toUpperCase(); // ignore upper and lowercase
