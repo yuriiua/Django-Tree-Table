@@ -171,6 +171,7 @@
 
     function sortData(key, data, type, direct) {
 
+
         // sort by value
         if(type == 'number'){
             if(direct == 'down'){
@@ -179,8 +180,9 @@
                 data.sort(function (a, b) {return parseInt(b[key]) - parseInt(a[key])});
             }
 
-        }else if (direct == 'alpha') {
+        }else if (type == 'alpha') {
             if(direct == 'up'){
+               console.log('up ', key);
                 data.sort(function(a, b) {
                     var nameA = a[key].toUpperCase(); // ignore upper and lowercase
                     var nameB = b[key].toUpperCase(); // ignore upper and lowercase
@@ -188,6 +190,7 @@
                     if (nameA > nameB) {return 1}
                 });
             }else{
+                console.log('down ', key);
                 data.sort(function(a, b) {
                     var nameA = a[key].toUpperCase(); // ignore upper and lowercase
                     var nameB = b[key].toUpperCase(); // ignore upper and lowercase
