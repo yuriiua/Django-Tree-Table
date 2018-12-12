@@ -188,6 +188,7 @@
                     var nameB = b[key].toUpperCase(); // ignore upper and lowercase
                     if (nameA < nameB) {return -1}
                     if (nameA > nameB) {return 1}
+                    return 0
                 });
             }else{
 
@@ -196,6 +197,7 @@
                     var nameB = b[key].toUpperCase(); // ignore upper and lowercase
                     if (nameA > nameB) {return -1}
                     if (nameA < nameB) {return 1}
+                    return 0
                 });
             }
 
@@ -206,6 +208,7 @@
                     var nameB = Date.parse(b[key]); //
                     if (nameA > nameB) {return -1}
                     if (nameA < nameB) {return 1}
+                    return 0
                 });
             }else{
                 data.sort(function(a, b) {
@@ -213,6 +216,7 @@
                     var nameB = Date.parse(b[key]); //
                     if (nameA < nameB) {return -1}
                     if (nameA > nameB) {return 1}
+                    return 0
                 });
             }
         }
@@ -255,8 +259,6 @@
         document.getElementById("searchForm").addEventListener("click", function(event){
     event.preventDefault()
     });
-
-
 
         $("#employeeTable").on("mousedown", ".expander", function() {
         var parentId = $(this).closest('tr').attr('data-tt-id');

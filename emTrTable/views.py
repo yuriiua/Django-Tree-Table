@@ -27,7 +27,7 @@ def getjsonTable(request):
 
         response_data = list()
 
-        employees = EmployeeTreeModel.objects.all().filter(level__lte=4)
+        employees = EmployeeTreeModel.objects.all().filter(level__lte=4).order_by('fullName')
         #response_data = serializers.serialize('json', employees)
 
 
