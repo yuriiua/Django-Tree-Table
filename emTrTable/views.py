@@ -53,15 +53,13 @@ def getjsonTable(request):
 
 def getTableByBossId(request):
     if request.user.is_authenticated:
-        print(request.GET)
+
         bossID = request.GET.get('bossID')
         order_by = request.GET.get('order_by') if request.GET.get('order_by') != '' else 'fullName'
-        print(order_by)
+
         response_data = list()
 
         employees = EmployeeTreeModel.objects.all().filter(bossID=bossID).order_by(order_by)
-
-        boss = EmployeeTreeModel.objects.get(id=bossID)
 
         for i in employees:
             response_data += [{
@@ -73,17 +71,6 @@ def getTableByBossId(request):
                 'id': i.id,
                 'level':i.level,
                 'bossName':i.bossName
-            }]
-
-        response_data += [{
-                'position' : boss.position,
-                'fullName': boss.fullName,
-                'salary':boss.salary,
-                'bossID':boss.bossID,
-                'employed': boss.employeeDate,
-                'id': boss.id,
-                'level':boss.level,
-                'bossName':boss.bossName
             }]
 
         return JsonResponse({'table':response_data}, safe=True)
