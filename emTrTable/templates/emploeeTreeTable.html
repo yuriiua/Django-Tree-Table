@@ -7,18 +7,17 @@
             <form name="searcher" class="form-inline" id="searchForm">
             {% csrf_token %}
             <div class="form-group">
-
                 <input type="text" class="form-control" id="searchInput" name="inputTerm" placeholder="Search area">
             </div>
             <div class="form-group">
                 <select class="form-control search_selector" name="searchBy">
-                        <option value="position">Position</option>
-                        <option value="fullName">Full Name</option>
-                        <option value="salary_less">Salary less</option>
-                        <option value="salary_more">Salary more</option>
-                        <option value="bossName" >Boss Name</option>
-                        <option value="employed_before" >Date before</option>
-                        <option value="employed_after" >Date after</option>
+                        <option value="position__icontains">Position</option>
+                        <option value="fullName__icontains">Full Name</option>
+                        <option value="salary__lte">Salary less</option>
+                        <option value="salary__gte">Salary more</option>
+                        <option value="bossID" >Boss Name</option>
+                        <option value="employeeDate__lte" >Date before</option>
+                        <option value="employeeDate__gte" >Date after</option>
 
                     </select>
             </div>
