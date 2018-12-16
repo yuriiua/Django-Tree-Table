@@ -33,7 +33,7 @@
     {% if bossList != 'False' %}
         <div class="form-group">
         <label>Boss</label>
-    <select onchange="changeLevel(this.value);return false;">
+    <select onchange="changeLevel(this);return false;">
     {% for boss in bossList %}
         {% if form.bossID.value == boss.id %}
 
@@ -47,6 +47,7 @@
     {% endif %}
     <p style="display: none;" id="inputlevel">{{ form.level }}</p>
     {% csrf_token %}
+    <p id="bossNameContainer" style="display: none">{{ form.bossName }}</p>
 
 
 
@@ -82,13 +83,20 @@
         processData: false
     });
 });
-   function changeLevel(bossId) {
+   function changeLevel(elemnt) {
+
+       var bossId = elemnt.value;
        var level = parseInt($('#id'+bossId).val())+1;
+       var bossNamevar = $('#'+bossId).html();
+       console.log(bossNamevar);
 
        $("#id_level").remove();
        $("#inputlevel").append('<input type="number" name="level" value="'+level+'" required="" id="id_level">');
        $("#id_bossID").remove();
-       $("#bossID").append('<input type="number" name="bossID" value="'+bossId+'" required="" id="id_bossID">')
+       $("#bossID").append('<input type="number" name="bossID" value="'+bossId+'" required="" id="id_bossID">');
+       $('#id_bossName').remove();
+       $('#bossNameContainer').append('<input type="text" name="bossName" value="'+bossNamevar+'" maxlength="200" required="" id="id_bossName">');
+
    }
 
 </script>

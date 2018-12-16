@@ -256,9 +256,12 @@
     }
 
     $(document).ready(function () {
-        document.getElementById("searchForm").addEventListener("click", function(event){
-    event.preventDefault()
-    });
+        if ($('#searchForm').length > 0){
+                    document.getElementById("searchForm").addEventListener("click", function(event){
+        event.preventDefault()
+        });
+        }
+
 
         $("#employeeTable").on("mousedown", ".expander", function() {
         var parentId = $(this).closest('tr').attr('data-tt-id');
