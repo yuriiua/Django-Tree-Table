@@ -9,9 +9,6 @@ from emTrTable.views import EmployeeViewSet
 
 
 
-emList = EmployeeViewSet.as_view({'get': 'list'})
-emRetrieve = EmployeeViewSet.as_view({'get': 'retrieve'})
-
 router = routers.DefaultRouter()
 router.register(r'EmployeeViewSet', EmployeeViewSet, basename='EmployeeView')
 
@@ -24,6 +21,4 @@ urlpatterns = [
     url(r'^searchBy', serchby),
     url(r'^detailPage', detailPage),
     url(r'^api/', include(router.urls)),
-    #url(r'api/emList', emList),
-    #url(r'api/emRetrieve', emRetrieve)
 ]
